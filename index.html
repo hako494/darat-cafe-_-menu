@@ -12,7 +12,7 @@ box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:en
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px);background:var(--bg)}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:Outfit,system-ui,sans-serif;line-height:1.5;overflow-x:hidden}
-#cv{position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+#cv{position:fixed;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}
 #pb{position:fixed;top:0;left:0;right:0;height:3px;background:var(--acc);transform-origin:0 50%;transform:scaleX(0);z-index:60}
 .cu i{position:fixed;left:0;right:0;height:50.2%;background:var(--bg);z-index:50;transition:transform 1.2s cubic-bezier(.77,0,.18,1) .15s;pointer-events:none}
 .cu i:first-child{top:0}.cu i:nth-child(2){bottom:0}
@@ -20,10 +20,10 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:Outfit,system-ui
 .cu svg path,.cu svg circle{stroke-dasharray:140;stroke-dashoffset:140;animation:dr 1.2s ease forwards}
 @keyframes dr{to{stroke-dashoffset:0}}
 .go .cu i:first-child{transform:translateY(-101%)}.go .cu i:nth-child(2){transform:translateY(101%)}.go .cu b{opacity:0;transform:scale(1.6)}
-.hero{position:relative;z-index:2;min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;padding:22px 22px 30px;background:radial-gradient(60% 50% at 50% 46%,#21493f 0,transparent 72%)}
-.top{display:flex;align-items:center;justify-content:space-between;color:var(--acc);font-weight:500;letter-spacing:.14em;font-size:13px;text-transform:uppercase}
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;padding:22px 22px 30px;background:radial-gradient(60% 50% at 50% 46%,#21493f 0,transparent 72%)}
+.top{position:relative;z-index:3;display:flex;align-items:center;justify-content:space-between;color:var(--acc);font-weight:500;letter-spacing:.14em;font-size:13px;text-transform:uppercase}
 .top svg{width:34px;vertical-align:middle;margin-right:10px}
-.hl{perspective:900px;text-align:center;font-weight:700;font-size:clamp(88px,27vw,320px);line-height:.9;letter-spacing:-.02em;color:var(--acc);margin:auto 0;user-select:none}
+.hl{perspective:900px;text-align:center;font-weight:700;font-size:clamp(60px,24vw,320px);white-space:nowrap;position:relative;z-index:0;line-height:.9;letter-spacing:-.02em;color:var(--acc);margin:auto 0;user-select:none}
 .hl span{display:inline-block;opacity:0;transform:rotateX(-100deg) translateY(50px);transform-origin:50% 100%}
 .go .hl span{animation:fl 1.2s calc(.7s + var(--i)*.1s) var(--e) forwards}
 @keyframes fl{to{opacity:1;transform:none}}
@@ -66,6 +66,8 @@ h2::after{content:"";display:block;height:2px;width:0;margin-top:12px;background
 .ch span:hover{background:var(--acc);color:var(--bg);transform:translateY(-2px)}
 footer{position:relative;z-index:3;text-align:center;padding:60px 20px 56px;color:var(--mute);font-size:14px}
 footer a{color:var(--acc);text-decoration:none;font-weight:600}
+.sg{margin-top:46px;display:flex;justify-content:center;align-items:baseline;flex-wrap:wrap;gap:6px 16px;font-size:12px;letter-spacing:.08em;color:var(--mute);opacity:.28;transition:opacity .5s}.sg:hover{opacity:.75}.sg a{color:inherit;font-weight:400}.sg b{font-family:Fraunces,serif;font-style:italic;font-size:16px;font-weight:600;color:var(--acc)}
+@media(max-aspect-ratio:4/5){.hl{margin:auto 0 5vh}.bt{gap:14px}.top{font-size:12px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.hl span,.fi,.rv{opacity:1;transform:none}.cu{display:none}html{scroll-behavior:auto}}
 </style>
 </head>
@@ -81,7 +83,8 @@ footer a{color:var(--acc);text-decoration:none;font-weight:600}
 <div class="mq"><div id="mq"></div></div>
 <nav aria-label="Menu sections"><div id="tabs"><span class="ind" id="ind"></span></div></nav>
 <main id="menu"></main>
-<footer><p>كافة الأسعار تشمل ضريبة المبيعات<br>All prices include sales tax</p><a href="https://www.instagram.com/darat.cafejo" rel="noopener">@darat.cafejo</a></footer>
+<footer><p>كافة الأسعار تشمل ضريبة المبيعات<br>All prices include sales tax</p><a href="https://www.instagram.com/darat.cafejo" rel="noopener">@darat.cafejo</a>
+<div class="sg"><b>hako</b><a href="https://www.instagram.com/hako._.ss" rel="noopener">@hako._.ss</a><a href="tel:0776741806">0776741806</a></div></footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 var rm=matchMedia("(prefers-reduced-motion:reduce)").matches,$=function(s){return document.querySelector(s)};
@@ -140,18 +143,33 @@ setTimeout(function(){document.body.classList.add("go")},rm?0:250);
  var cf=new THREE.Mesh(new THREE.CircleGeometry(1.27,64),M(0x3b2315,.15,.05));cf.rotation.x=-Math.PI/2;cf.position.y=1.55;G.add(cf);
  var cr=new THREE.Mesh(new THREE.RingGeometry(.55,1.0,64),new THREE.MeshBasicMaterial({color:0x9c6a3f,transparent:true,opacity:.45}));cr.rotation.x=-Math.PI/2;cr.position.y=1.56;G.add(cr);
  var hd=new THREE.Mesh(new THREE.TorusGeometry(.5,.11,16,32,Math.PI),cream);hd.rotation.z=-Math.PI/2;hd.position.set(1.42,1.05,0);G.add(hd);
- var N=36,P=new Float32Array(N*3),Cl=new Float32Array(N*3),sd=[];for(i=0;i<N;i++)sd.push([Math.random(),.2+Math.random()*.3,Math.random()*6]);
- var sg=new THREE.BufferGeometry();sg.setAttribute("position",new THREE.BufferAttribute(P,3));sg.setAttribute("color",new THREE.BufferAttribute(Cl,3));
- var cn=document.createElement("canvas");cn.width=cn.height=64;var cx=cn.getContext("2d"),gr=cx.createRadialGradient(32,32,0,32,32,32);gr.addColorStop(0,"rgba(255,255,255,1)");gr.addColorStop(1,"rgba(255,255,255,0)");cx.fillStyle=gr;cx.fillRect(0,0,64,64);
- G.add(new THREE.Points(sg,new THREE.PointsMaterial({size:1.2,map:new THREE.CanvasTexture(cn),vertexColors:true,transparent:true,blending:THREE.AdditiveBlending,depthWrite:false})));
- var B=[],bm=M(0x5b3721,.45),cm=M(0x22110a,.8);
- for(i=0;i<16;i++){var b=new THREE.Mesh(new THREE.SphereGeometry(.26,18,14),bm);b.scale.set(1,.68,.55);var k=new THREE.Mesh(new THREE.BoxGeometry(.5,.015,.05),cm);k.position.y=.17;b.add(k);b.userData={a:Math.random()*6.28,r:3.2+Math.random()*1.8,y:Math.random()*3.6-.2,s:(.12+Math.random()*.22)*(i%2?1:-1),p:Math.random()*6};G.add(b);B.push(b)}
+ var N=48,P=new Float32Array(N*3),Al=new Float32Array(N),Sz=new Float32Array(N),sd=[];for(i=0;i<N;i++)sd.push([Math.random(),.16+Math.random()*.22,Math.random()*6]);
+ var sg=new THREE.BufferGeometry();sg.setAttribute("position",new THREE.BufferAttribute(P,3));sg.setAttribute("al",new THREE.BufferAttribute(Al,1));sg.setAttribute("sz",new THREE.BufferAttribute(Sz,1));
+ var cn=document.createElement("canvas");cn.width=cn.height=64;var cx=cn.getContext("2d"),gr=cx.createRadialGradient(32,32,0,32,32,32);gr.addColorStop(0,"rgba(255,255,255,1)");gr.addColorStop(.45,"rgba(255,255,255,.45)");gr.addColorStop(1,"rgba(255,255,255,0)");cx.fillStyle=gr;cx.fillRect(0,0,64,64);
+ var su={m:{value:new THREE.CanvasTexture(cn)},sc:{value:400}};
+ var st=new THREE.Points(sg,new THREE.ShaderMaterial({uniforms:su,transparent:true,depthWrite:false,vertexShader:"attribute float al;attribute float sz;varying float v;uniform float sc;void main(){v=al;vec4 mv=modelViewMatrix*vec4(position,1.);gl_PointSize=sz*sc/-mv.z;gl_Position=projectionMatrix*mv;}",fragmentShader:"uniform sampler2D m;varying float v;void main(){vec4 c=texture2D(m,gl_PointCoord);gl_FragColor=vec4(1.,1.,1.,c.a*v);}"}));
+ st.frustumCulled=false;G.add(st);
+ var bg=new THREE.SphereGeometry(1,72,52),pa=bg.attributes.position,vc=[];
+ for(i=0;i<pa.count;i++){var x=pa.getX(i),Y=pa.getY(i)*.7,Z=pa.getZ(i)*.52,g=Math.exp(-Math.pow((Y-.11*Math.sin(x*3.1))/.075,2))*(1-x*x*.55),up=Z>0;if(up){Z*=.66;Z-=.15*g}pa.setXYZ(i,x,Y,Z);var c=1-(up?.72*g:0);vc.push(c,c,c)}
+ bg.setAttribute("color",new THREE.Float32BufferAttribute(vc,3));bg.computeVertexNormals();
+ var bn=document.createElement("canvas");bn.width=bn.height=256;var bx=bn.getContext("2d");bx.fillStyle="#808080";bx.fillRect(0,0,256,256);
+ for(i=0;i<1400;i++){var q=Math.random()*255|0;bx.fillStyle="rgba("+q+","+q+","+q+",.18)";bx.beginPath();bx.arc(Math.random()*256,Math.random()*256,1+Math.random()*6,0,6.3);bx.fill()}
+ var bt=new THREE.CanvasTexture(bn);bt.wrapS=bt.wrapT=THREE.RepeatWrapping;bt.repeat.set(4,3);
+ var bms=[0x4a2a14,0x3c2110,0x57341a,0x2f190c,0x4f2d17].map(function(c){return new THREE.MeshPhysicalMaterial({color:c,roughness:.38,clearcoat:.55,clearcoatRoughness:.28,bumpMap:bt,bumpScale:3,vertexColors:true})});
+ function bean(s,k){var m=new THREE.Mesh(bg,bms[k%5]);m.scale.setScalar(s);return m}
+ var B=[];
+ for(i=0;i<14;i++){var b=bean(.26+Math.random()*.1,i);b.userData={a:Math.random()*6.28,r:3.2+Math.random()*1.8,y:Math.random()*3.6-.2,s:(.12+Math.random()*.22)*(i%2?1:-1),p:Math.random()*6};G.add(b);B.push(b)}
+ for(i=0;i<7;i++){var w=new THREE.Group(),b2=bean(.3+Math.random()*.06,i+2),an=i*.9+Math.random()*.3,rr=2.1+Math.random()*.2;b2.rotation.x=i%3?-Math.PI/2:Math.PI/2;b2.rotation.z=(Math.random()-.5)*.3;w.rotation.y=Math.random()*6.28;w.add(b2);w.position.set(Math.cos(an)*rr,.3,Math.sin(an)*rr);G.add(w)}
  S.add(new THREE.AmbientLight(0xcfe8dc,.6));
  var kl=new THREE.DirectionalLight(0xfff1d6,1.5);kl.position.set(4,7,6);S.add(kl);
  var rl=new THREE.PointLight(0x7fe3c4,1.6,30);rl.position.set(-6,3,-4);S.add(rl);
  var fl=new THREE.PointLight(0xffd9a0,.8,30);fl.position.set(5,-1,4);S.add(fl);
- function rs(){var w=innerWidth,hh=innerHeight;R.setPixelRatio(Math.min(devicePixelRatio,2));R.setSize(w,hh,false);C.aspect=w/hh;C.position.set(0,2.4,w/hh<.8?19:13);C.lookAt(0,.9,0);C.updateProjectionMatrix()}
- rs();addEventListener("resize",rs);
+ var sl=new THREE.PointLight(0xffffff,1.1,40);sl.position.set(1,6,9);S.add(sl);
+ var lw=0,lh=0,bs=1;
+ function rs(f){var w=innerWidth,hh=innerHeight;if(!f&&w===lw&&Math.abs(hh-lh)<160)return;lw=w;lh=hh;var a=w/hh,tn=Math.tan(16*Math.PI/180),d=13,ly=.9,y=2.4;bs=1;
+  if(a<.85){d=Math.max(13,8.2/a/(2*tn));ly=-.1-d*tn*2*.17;y=ly+d*.17;bs=.7}
+  R.setPixelRatio(Math.min(devicePixelRatio,2));R.setSize(w,hh,false);su.sc.value=hh*Math.min(devicePixelRatio,2)/2;C.aspect=a;C.position.set(0,y,d);C.lookAt(0,ly,0);C.updateProjectionMatrix()}
+ rs(1);addEventListener("resize",function(){rs()});
  var mx=0,my=0,sx=0,sy=0,t0=performance.now();
  addEventListener("pointermove",function(e){mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
  function loop(now){requestAnimationFrame(loop);
@@ -161,9 +179,9 @@ setTimeout(function(){document.body.classList.add("go")},rm?0:250);
   G.rotation.y=t*.3+sx*.9+p*2.4+(1-e)*5;G.rotation.x=sy*.25-p*.2;
   G.position.y=-1.1+Math.sin(t*1.2)*.12+p*2.6;G.scale.setScalar((.5+.5*e)*(1-p*.22));
   cv.style.opacity=Math.max(0,1-p*.85);
-  for(var i=0;i<N;i++){var s=sd[i],ph=(t*s[1]+s[0])%1,a=Math.sin(ph*Math.PI)*.15;P[i*3]=Math.sin(ph*6+s[2])*.3*ph;P[i*3+1]=1.9+ph*2.7;P[i*3+2]=Math.cos(ph*5+s[2])*.22*ph;Cl[i*3]=Cl[i*3+1]=Cl[i*3+2]=a}
-  sg.attributes.position.needsUpdate=sg.attributes.color.needsUpdate=true;
-  B.forEach(function(b){var u=b.userData,g=u.a+t*u.s;b.position.set(Math.cos(g)*u.r,u.y+Math.sin(t+u.p)*.18,Math.sin(g)*u.r);b.rotation.x=t*.6+u.p;b.rotation.z=t*.4+u.p});
+  for(var i=0;i<N;i++){var s=sd[i],ph=(t*s[1]+s[0])%1;P[i*3]=Math.sin(ph*5+s[2])*.32*ph;P[i*3+1]=1.7+ph*3;P[i*3+2]=Math.cos(ph*4+s[2])*.24*ph;Al[i]=Math.sin(Math.min(ph*1.15,1)*Math.PI)*.4;Sz[i]=.55+ph*1.6}
+  sg.attributes.position.needsUpdate=sg.attributes.al.needsUpdate=sg.attributes.sz.needsUpdate=true;
+  B.forEach(function(b){var u=b.userData,g=u.a+t*u.s;b.position.set(Math.cos(g)*u.r*bs,u.y+Math.sin(t+u.p)*.18,Math.sin(g)*u.r*bs);b.rotation.x=t*.6+u.p;b.rotation.z=t*.4+u.p});
   R.render(S,C)}
  requestAnimationFrame(loop);
  }catch(x){cv.style.display="none"}
